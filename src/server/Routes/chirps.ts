@@ -1,9 +1,9 @@
-import express from 'express';
+import * as express from 'express';
 import chirpsStore from '../chirpsstore';
 
-let chirpsRouter = express.Router();
+let router = express.Router();
 
-chirpsRouter.get('/:id?', (req, res) => {
+router.get('/:id?', (req, res) => {
   let id = req.params.id;
 
   if (id) {
@@ -13,12 +13,12 @@ chirpsRouter.get('/:id?', (req, res) => {
   }
 });
 
-chirpsRouter.post('/', (req, res) => {
+router.post('/', (req, res) => {
   chirpsStore.CreateChirp(req.body);
   res.sendStatus(200);
 });
 
-chirpsRouter.put('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   let id = req.params.id;
   let chirp = req.body;
 
@@ -29,7 +29,7 @@ chirpsRouter.put('/:id', (req, res) => {
   }
 });
 
-chirpsRouter.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   let id = req.params.id;
 
   if (id) {
@@ -38,4 +38,4 @@ chirpsRouter.delete('/:id', (req, res) => {
   }
 });
 
-export default chirpsRouter;
+export default router;

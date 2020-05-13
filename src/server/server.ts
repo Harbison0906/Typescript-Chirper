@@ -1,10 +1,11 @@
 import * as express from 'express';
-import chirpsRouter from './Routes/chirps';
+import apiRouter from './Routes';
 
 const app = express();
 
 app.use(express.static('public'));
-app.use(chirpsRouter);
+app.use(express.json());
+app.use('/api', apiRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server listening on port: ${port}`));

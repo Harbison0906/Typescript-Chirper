@@ -16,7 +16,7 @@ let getChirp = id => {
 let createChirp = (chirp) => {
     chirps[chirps.nextid++] = chirp;
     writeChirps();
-};
+}
 
 let updateChirp = (id, chirp) => {
     chirps[id] = chirp;
