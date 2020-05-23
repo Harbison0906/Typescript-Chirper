@@ -5,6 +5,16 @@ let router = express.Router();
 
 router.get('/:id?', (req, res) => {
   let id = req.params.id;
+  
+  const chirps = Object.keys(this.state.chirps).map(key => {
+    return {
+         id: key,
+         user: this.state.chirps[key].user,
+         text: this.state.chirps[key].text
+    }
+});
+
+chirps.pop();
 
   if (id) {
     res.json(chirpsStore.GetChirp(id));

@@ -20,17 +20,13 @@ export default class Home extends Component<IAppProps, IAppState> {
   }
 
   render() {
-    const chirpsArray = this.state.chirps;
-    const objToArray = Object.keys(chirpsArray).map(key => {
-      return chirpsArray[key];
-    });
-    console.log(this.state.chirps);
+    
 
     return (
       <main className="container timeline">
         <section className="row justify-content-center">
           <>
-            {/* modifies and styles each new chirp */}
+            {/* modifies and styles each new chirp
             {objToArray.map(chirp => {
               return (
                 <div className="col-md-7">
@@ -42,7 +38,7 @@ export default class Home extends Component<IAppProps, IAppState> {
                   </div>
                 </div>
               )
-            })}
+            })} */}
           </>
         </section>
       </main>
