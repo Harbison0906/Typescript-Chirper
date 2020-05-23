@@ -2,4 +2,37 @@ $theme-colors: (
     'primary': #0091ea //Covalence Blue!  :D
 );
 
+.header {
+    background-color: #141B41;
+    color: #F6FDFE;
+    font-family: 'Baloo Chettan 2', cursive;
+    text-align: left;
+  }
+  
+  .card {
+    margin-bottom: 10px;
+  }
+  
+  textarea {
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.6);
+  }
+  
+  hr {
+    margin-left: 100px;
+    margin-right:100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .btn {
+    color: #EEF7FD; 
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.6);
+    background-color: #86898C;
+    float: right;
+  }
+
+  .link {
+    color: #F6FDFE;
+    margin: 10px;
+  }
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';

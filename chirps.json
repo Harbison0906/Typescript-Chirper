@@ -1,11 +1,1 @@
-{
-  "1": {
-    "user": "John",
-    "text": "Hello, my name is John."
-  },
-  "nextid": 2,
-  "NaN": {
-    "user": "Seth",
-    "text": "Hello, this is a test."
-  }
-}
+{"0":{"user":"Seth","text":"Hello, my name is Seth."},"1":{"user":"James","text":"Hello, my name is James."},"nextid":2}
