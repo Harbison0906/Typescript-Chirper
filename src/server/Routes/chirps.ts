@@ -1,26 +1,24 @@
 import * as express from 'express';
 import chirpsStore from '../chirpsstore';
+import { number, string, any } from 'prop-types';
 
 let router = express.Router();
 
-router.get('/:id?', (req, res) => {
-  let id = req.params.id;
-  
-  const chirps = Object.keys(this.state.chirps).map(key => {
+router.get('/', (req, res, next) => {
+
+  const data = chirpsStore.GetChirps();
+  const chirps = Object.keys(data).map((key) => {
     return {
          id: key,
-         user: this.state.chirps[key].user,
-         text: this.state.chirps[key].text
+         user: data[key].user,
+         text: data[key].text
     }
 });
 
 chirps.pop();
 
-  if (id) {
-    res.json(chirpsStore.GetChirp(id));
-  } else {
-    res.send(chirpsStore.GetChirps());
-  }
+res.json(chirps);
+
 });
 
 router.post('/', (req, res) => {
@@ -47,5 +45,7 @@ router.delete('/:id', (req, res) => {
     res.send('Chirp Deleted!');
   }
 });
+
+
 
 export default router;
