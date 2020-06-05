@@ -1,41 +1,41 @@
 import React, { Component } from 'react';
-import { any, string } from 'prop-types';
-import chirpsstore from '../../server/chirpsstore';
 import { RouteComponentProps } from 'react-router';
-
-
-
 
 export default class AddChirp extends Component<IAddProps, IAddState> {
 
   constructor(props: IAddProps) {
     super(props);
-
     this.state = {
       user: '',
       value: '',
     };
   }
 
-  handleChange = (event: any) => {
+  
+
+  handleUserChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ user: event.target.value });
+  }
+
+  handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({ value: event.target.value });
   }
 
-  // addChirp = (event) => {
-  //   event.preventDefault();
-  //   const newChirp = this.props.match.params..slice()
-  //   newChirp.unshift(this.state.value);
-  //   this.setState({ value: '', chirps: newChirp });
-  // }
-
-  componentDidMount() {
-    const data = {user: 'seth', text: 'hello world'}
+  addChirp = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const data = {user: this.state.user, text: this.state.value}
     fetch('/api/chirps', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(data)
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data);
+        this.props.history.push('/');
+      })
   }
 
   render() {
@@ -47,7 +47,7 @@ export default class AddChirp extends Component<IAddProps, IAddState> {
               <div className="card shadow-sm">
                 <div className="card-body">
                   <form className="form-group">
-                    <input id="username" type="text" className="form-control shadow-sm" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                    <input value={this.state.user} onChange={this.handleUserChange} id="username" type="text" className="form-control shadow-sm" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
                     <textarea
                       className="shadow-sm form-control mb-3"
                       aria-label="With textarea"
@@ -56,8 +56,9 @@ export default class AddChirp extends Component<IAddProps, IAddState> {
                       onChange={this.handleChange}
                     />
                     <button
+                      id="addChirp"
                       className="btn"
-                    onClick={this.componentDidMount}  //adds new chirp when "Chirp" is clicked
+                    onClick={this.addChirp}  //adds new chirp when "Chirp" is clicked
                     >Chirp</button>
                   </form>
                 </div>
@@ -73,7 +74,7 @@ export default class AddChirp extends Component<IAddProps, IAddState> {
 
 }
 
-export interface IAddProps extends RouteComponentProps < {id: string} >{ }
+export interface IAddProps extends RouteComponentProps { }
 
 export interface IAddState {
   user: string;

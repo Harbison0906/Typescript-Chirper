@@ -2,12 +2,10 @@ import * as React from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Add from './components/addChirp'
-
+import Admin from './components/Admin';
 
 
 export default class App extends React.Component {
-
-	
 
 	render() {
 		return (
@@ -29,6 +27,7 @@ export default class App extends React.Component {
 					<Switch>
 						<Route exact path="/" component={Home} />
 						<Route exact path="/add" component={Add} />
+						<Route exact path="/admin/:id" component={Admin} />
 					</Switch>
 				</BrowserRouter>
 			</main>
@@ -36,11 +35,6 @@ export default class App extends React.Component {
 		);
 	}
 }
-
-export interface IAppState {
-  chirps: { id: string; user: string; text: string; }[]
-}
-
 
 
 

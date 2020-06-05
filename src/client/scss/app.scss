@@ -24,9 +24,27 @@ $theme-colors: (
     margin-bottom: 10px;
   }
 
-  .btn {
+  #adminButton {
     color: #EEF7FD; 
-    background-color: #86898C;
+    background-color: #141B41;
+    float: right;
+  }
+
+  #addChirp {
+    color: #EEF7FD; 
+    background-color: #141B41;
+    float: right;
+  }
+
+  #editChirp {
+    color: #EEF7FD; 
+    background-color: #141B41;
+    float: left;
+  }
+
+  #deleteChirp {
+    color: #EEF7FD; 
+    background-color: #141B41;
     float: right;
   }
 

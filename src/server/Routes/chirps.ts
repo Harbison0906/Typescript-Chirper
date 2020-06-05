@@ -1,29 +1,33 @@
 import * as express from 'express';
 import chirpsStore from '../chirpsstore';
-import { number, string, any } from 'prop-types';
+
 
 let router = express.Router();
+
+router.get('/test', (req, res) => res.json('wtf?'))
 
 router.get('/', (req, res, next) => {
 
   const data = chirpsStore.GetChirps();
   const chirps = Object.keys(data).map((key) => {
     return {
-         id: key,
-         user: data[key].user,
-         text: data[key].text
+      id: key,
+      //@ts-ignore
+      user: data[key].user,
+      //@ts-ignore
+      text: data[key].text
     }
-});
+  });
 
-chirps.pop();
+  chirps.pop();
 
-res.json(chirps);
+  res.json(chirps);
 
 });
 
 router.post('/', (req, res) => {
   chirpsStore.CreateChirp(req.body);
-  res.sendStatus(200);
+  res.json('Chirp has been created');
 });
 
 router.put('/:id', (req, res) => {
