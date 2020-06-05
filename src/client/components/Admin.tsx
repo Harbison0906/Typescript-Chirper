@@ -21,7 +21,7 @@ export default class Admin extends Component<IAdminProps, IAdminState> {
   }
 
   componentDidMount() {
-    fetch(`/api/chirps/${this.props.match.params.id}`)
+    fetch(`/api/chirps/:${this.props.match.params.id}`)
     .then(res => res.json())
     .then((chirp: IChirp) => this.setState({ user: chirp.user, value: chirp.text}));
     // GET `/api/chirps/${this.props.match.params.id}` 

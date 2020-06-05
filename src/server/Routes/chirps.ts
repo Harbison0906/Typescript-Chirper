@@ -1,5 +1,6 @@
 import * as express from 'express';
 import chirpsStore from '../chirpsstore';
+import { number, string } from 'prop-types';
 
 
 let router = express.Router();
@@ -25,9 +26,18 @@ router.get('/', (req, res, next) => {
 
 });
 
+router.get('/:id', (req, res, next) => {
+  let id = req.params.id;
+  let getChirp= chirpsStore.GetChirp(id);
+
+  chirpsStore.GetChirp(id);
+  
+  res.json(getChirp);
+});
+
 router.post('/', (req, res) => {
   chirpsStore.CreateChirp(req.body);
-  res.json('Chirp has been created');
+  res.json();
 });
 
 router.put('/:id', (req, res) => {
