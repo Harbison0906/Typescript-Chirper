@@ -37,7 +37,7 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/', (req, res) => {
   chirpsStore.CreateChirp(req.body);
-  res.json();
+  res.json('Chirp added!');
 });
 
 router.put('/:id', (req, res) => {

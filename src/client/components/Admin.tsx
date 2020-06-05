@@ -21,16 +21,15 @@ export default class Admin extends Component<IAdminProps, IAdminState> {
   }
 
   componentDidMount() {
-    fetch(`/api/chirps/:${this.props.match.params.id}`)
-    .then(res => res.json())
-    .then((chirp: IChirp) => this.setState({ user: chirp.user, value: chirp.text}));
-    // GET `/api/chirps/${this.props.match.params.id}` 
-    // this.setState({ user: , value: 'Lol' })
+
+    fetch(`/api/chirps/${this.props.match.params.id}`)
+      .then(res => res.json())
+      .then((chirp: IChirp) => this.setState({ user: chirp.user, value: chirp.text }));
   }
 
   editChirp = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const data = {user: this.state.user, text: this.state.value}
+    const data = { user: this.state.user, text: this.state.value }
     fetch(`/api/chirps/${this.props.match.params.id}`, {
       method: 'PUT',
       headers: {
@@ -48,14 +47,15 @@ export default class Admin extends Component<IAdminProps, IAdminState> {
   deleteChirp = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     fetch(`/api/chirps/${this.props.match.params.id}`, {
-      method: 'delete' })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      this.props.history.push('/');
+      method: 'delete'
     })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        this.props.history.push('/');
+      })
   }
-  
+
 
   render() {
     return (
@@ -78,12 +78,12 @@ export default class Admin extends Component<IAdminProps, IAdminState> {
                       <button
                         id="editChirp"
                         className="btn"
-                        onClick={this.editChirp}  //adds new chirp when "Chirp" is clicked
+                        onClick={this.editChirp}  //updates chirp when clicked
                       >Edit Chirp</button>
                       <button
                         id="deleteChirp"
                         className="btn"
-                        onClick={this.deleteChirp}  //adds new chirp when "Chirp" is clicked
+                        onClick={this.deleteChirp}  //deletes chirp when clicked
                       >Delete Chirp</button>
                     </form>
                   </div>
