@@ -34,20 +34,19 @@ router.put('/:id', (req, res) => {
   let id = req.params.id;
   let chirp = req.body;
 
-  if (id) {
-    res.json(chirpsStore.UpdateChirp(id, chirp));
-  } else {
-    res.sendStatus(200);
-  }
-});
+  chirpsStore.UpdateChirp(id, chirp);
+  res.json('Successful Edit!');
+  res.sendStatus(200);
+}
+);
 
 router.delete('/:id', (req, res) => {
   let id = req.params.id;
 
-  if (id) {
-    chirpsStore.DeleteChirp(id);
+  chirpsStore.DeleteChirp(id);
+    res.json('Chirp Deleted!')
     res.send('Chirp Deleted!');
-  }
+  
 });
 
 

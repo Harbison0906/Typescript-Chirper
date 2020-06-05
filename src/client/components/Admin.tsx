@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
+import { IChirp } from '../utils/interfaces';
 
 export default class Admin extends Component<IAdminProps, IAdminState> {
 
@@ -21,8 +22,8 @@ export default class Admin extends Component<IAdminProps, IAdminState> {
 
   componentDidMount() {
     fetch(`/api/chirps/${this.props.match.params.id}`)
-      .then(res => res.json())
-      .then(chirp => this.setState({ user: this.state.user, value: this.state.value }));
+    .then(res => res.json())
+    .then((chirp: IChirp) => this.setState({ user: chirp.user, value: chirp.text}));
     // GET `/api/chirps/${this.props.match.params.id}` 
     // this.setState({ user: , value: 'Lol' })
   }
@@ -46,8 +47,15 @@ export default class Admin extends Component<IAdminProps, IAdminState> {
 
   deleteChirp = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    // DELETE `/api/chirps/${this.props.match.params.id}`
+    fetch(`/api/chirps/${this.props.match.params.id}`, {
+      method: 'delete' })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      this.props.history.push('/');
+    })
   }
+  
 
   render() {
     return (
@@ -75,7 +83,7 @@ export default class Admin extends Component<IAdminProps, IAdminState> {
                       <button
                         id="deleteChirp"
                         className="btn"
-                        // onClick={this.addChirp}  //adds new chirp when "Chirp" is clicked
+                        onClick={this.deleteChirp}  //adds new chirp when "Chirp" is clicked
                       >Delete Chirp</button>
                     </form>
                   </div>
@@ -97,3 +105,4 @@ interface IAdminState {
   user: string;
   value: string;
 }
+
